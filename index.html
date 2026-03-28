@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HIRV tapahtumaloki</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="theme-color" content="#2d5a27">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+
+<div id="update-banner" onclick="window.location.reload()">Päivitys saatavilla! Klikkaa tästä.</div>
+
+<div class="main-header">
+    <h1>HIRV tapahtumaloki</h1>
+    <button class="reset-all-btn" onclick="resetEverything()" title="Nollaa kaikki">⟲</button>
+</div>
+
 <div class="calculators-container">
     <script>
         for(let i=1; i<=2; i++) {
@@ -68,6 +91,26 @@
             <span class="diff-label">Arvioitu lopetusaika</span>
             <div class="diff-value end-result">--:--</div>
         </div>
-        <p style="font-size: 0.8rem; color: #64748b; text-align: center;">Tämä kortti on vain laskentaa varten.</p>
+        <p style="font-size: 0.8rem; color: #64748b; text-align: center;">Vain laskentaan, ei tallennu lokiin.</p>
     </div>
 </div>
+
+<div class="history-container">
+    <div class="history-header">
+        <h3>Tapahtumaloki (Aikajärjestys)</h3>
+        <button class="copy-all-btn" onclick="copyAllToClipboard()">📋 Kopioi kaikki</button>
+    </div>
+    <div id="history-list"></div>
+    <button class="danger-link" onclick="clearHistory()">Tyhjennä historia</button>
+</div>
+
+<div id="toast" class="toast">Kopioitu!</div>
+
+<script src="script.js"></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+    }
+</script>
+</body>
+</html>
