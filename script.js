@@ -88,27 +88,6 @@ function saveResult(btn) {
     card.querySelector('.event-list').innerHTML = "";
 }
 
-function renderHistory() {
-    const list = document.getElementById('history-list');
-    list.innerHTML = "";
-
-    historyData.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'history-item';
-        let eventHtml = item.events.map(e => `<div class="event-row-saved">    ${e.time} ${e.text}</div>`).join('');
-        
-        div.innerHTML = `
-            <div>
-                <strong>${item.title}</strong><br>
-                ${item.start} - ${item.end} (${item.duration})
-                ${eventHtml}
-            </div>
-            <button onclick="deleteItem(${item.id})">×</button>
-        `;
-        list.appendChild(div);
-    });
-}
-
 function copyAllToClipboard() {
     const text = historyData.map(item => {
         let str = `${item.title}\n${item.start} - ${item.end} (${item.duration})`;
@@ -132,4 +111,95 @@ function showToast() {
     const t = document.getElementById('toast');
     t.style.display = 'block';
     setTimeout(() => t.style.display = 'none', 2000);
+}
+
+//---
+// Yksittäisen kortin tyhjennys
+function resetCard(id) {
+    if(confirm("Tyhjennetäänkö tämän kortin tiedot?")) {
+        const card = document.getElementById(`calc-${id}`);
+        card.querySelectorAll('input').forEach(input => input.value = "");
+        if(id < 3) {
+            card.querySelector('.result').innerText = "0 min";
+            card.querySelector('.event-list').innerHTML = "";
+        } else {
+            card.querySelector('.end-result').innerText = "--:--";
+        }
+    }
+}
+
+// Yläpalkin nollausnapin korjaus
+function resetEverything() {
+    if(confirm("Tyhjennetäänkö kaikki kortit?")) {
+        document.querySelectorAll('input').forEach(i => i.value = "");
+        document.querySelectorAll('.result').forEach(r => r.innerText = "0 min");
+        document.querySelectorAll('.event-list').forEach(e => e.innerHTML = "");
+        const specialResult = document.querySelector('.end-result');
+        if(specialResult) specialResult.innerText = "--:--";
+    }
+}
+
+// Kolmannen kortin laskenta
+function calculateEndTime() {
+    const startVal = document.querySelector('.t-start').value;
+    const durationVal = document.querySelector('.duration-input').value;
+    const resultDiv = document.querySelector('.end-result');
+
+    if (!startVal || !durationVal) {
+        resultDiv.innerText = "--:--";
+        return;
+    }
+
+    const [h, m] = startVal.split(':').map(Number);
+    let totalMinutes = h * 60 + m + parseInt(durationVal);
+    
+    // Yli vuorokauden menevät ajat
+    totalMinutes = totalMinutes % 1440;
+
+    const endH = Math.floor(totalMinutes / 60).toString().padStart(2, '0');
+    const endM = (totalMinutes % 60).toString().padStart(2, '0');
+    
+    resultDiv.innerText = `${endH}:${endM}`;
+}
+
+function setNowSpecial() {
+    const now = new Date();
+    document.querySelector('.t-start').value = 
+        now.getHours().toString().padStart(2, '0') + ":" + 
+        now.getMinutes().toString().padStart(2, '0');
+    calculateEndTime();
+}
+
+// Historian renderöinti (lisätty kopiointinappi)
+function renderHistory() {
+    const list = document.getElementById('history-list');
+    list.innerHTML = "";
+
+    historyData.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'history-item';
+        let eventHtml = item.events.map(e => `<div class="event-row-saved">    ${e.time} ${e.text}</div>`).join('');
+        
+        div.innerHTML = `
+            <div style="flex-grow: 1;">
+                <strong>${item.title}</strong><br>
+                ${item.start} - ${item.end} (${item.duration})
+                ${eventHtml}
+            </div>
+            <div class="history-actions">
+                <button class="copy-item-btn" onclick="copySingleItem(${item.id})" title="Kopioi">📋</button>
+                <button onclick="deleteItem(${item.id})" title="Poista">×</button>
+            </div>
+        `;
+        list.appendChild(div);
+    });
+}
+
+function copySingleItem(id) {
+    const item = historyData.find(i => i.id === id);
+    let str = `${item.title}\n${item.start} - ${item.end} (${item.duration})`;
+    item.events.forEach(e => { str += `\n    ${e.time} ${e.text}`; });
+    
+    navigator.clipboard.writeText(str);
+    showToast();
 }
