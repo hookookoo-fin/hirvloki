@@ -1,0 +1,21 @@
+{
+  "title": "HIRV Tapahtumaloki - Ohjeet",
+  "sections": [
+    {
+      "heading": "Tapahtumalohkot (Kortit 1 & 2)",
+      "text": "Käytä näitä koiran suorituksen seurantaan. Voit asettaa aloitusaika ja lopetusaika 'Nyt'-nappia käyttämällä tai syöttämällä ajan käsin. '+txt' -napilla voit lisätä yksittäisiä tapahtumia, muistiinpanoja jne (esim. AT, YO, Kam, jne) aikaleimalla."
+    },
+    {
+      "heading": "Tallentaminen ja Muokkaus",
+      "text": "Tallenna-nappi siirtää tiedot historiaan aikajärjestykseen, myös +txt merkinnät kortin (lohkon) sisällä. Voit muokata jo tallennettua tapahtumaa painamalla kynä-ikonia (✏️), jolloin tiedot palautuvat korttiin 1 muokattavaksi."
+    },
+    {
+      "heading": "Aikalaskin (Keltainen kortti)",
+      "text": "Tämä on aputyökalu esim LH, UH, TA ja erän päättymisajan laskemiseen. Syötä aloitusaika ja kesto minuutteina (esim. 300), niin sovellus laskee lopetusajan automaattisesti."
+    },
+    {
+      "heading": "Varmuuskopiointi",
+      "text": "Muista kopioida loki 'Kopioi kaikki' -napilla ja liittää se esim. viestisovellukseen kokeen päätteeksi. Tiedot säilyvät puhelimen muistissa, ellet tyhjennä historiaa. Tietoja voi kopioida myös lohko kerrallaan."
+    }
+  ]
+}

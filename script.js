@@ -228,3 +228,28 @@ function showToast() {
     t.style.display = 'block';
     setTimeout(() => t.style.display = 'none', 2000);
 }
+
+async function toggleInstructions() {
+    const modal = document.getElementById('instructions-modal');
+    const body = document.getElementById('instructions-body');
+
+    if (modal.style.display === "block") {
+        modal.style.display = "none";
+    } else {
+        try {
+            const response = await fetch('instructions.json');
+            const data = await response.json();
+            
+            let html = `<h1>${data.title}</h1>`;
+            data.sections.forEach(s => {
+                html += `<h2>${s.heading}</h2><p>${s.text}</p>`;
+            });
+            
+            body.innerHTML = html;
+            modal.style.display = "block";
+        } catch (error) {
+            body.innerHTML = "Ohjeiden lataus epäonnistui. Varmista verkkoyhteys tai instructions.json-tiedosto.";
+            modal.style.display = "block";
+        }
+    }
+}
