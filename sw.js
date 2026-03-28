@@ -1,18 +1,36 @@
-const CACHE_NAME = 'hirv-loki-v7';
+const CACHE_NAME = 'hirv-loki-v9'; // MUISTA KASVATTAA TÄTÄ JOKAINEN KERTA
 const ASSETS = [
-  'index.html',
-  'style.css',
-  'script.js',
-  'manifest.json',
-  'icon-192.png',  // Lisää tämä
-  'icon-512.png'   // Lisää tämä
+  './',
+  './index.html',
+  './style.css',
+  './script.js',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
-
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
+  self.skipWaiting();
+  e.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+  );
+});
+
+self.addEventListener('activate', (e) => {
+  // Siivotaan vanhat välimuistit heti
+  e.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(keys.map(key => {
+        if (key !== CACHE_NAME) return caches.delete(key);
+      }));
+    })
+  );
+  // Ottaa kontrollin välittömästi kaikista avoimista välilehdistä
+  return self.clients.claim();
 });
 
 self.addEventListener('fetch', (e) => {
-  e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
+  e.respondWith(
+    caches.match(e.request).then(res => res || fetch(e.request))
+  );
 });

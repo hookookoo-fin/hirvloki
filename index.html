@@ -112,5 +112,26 @@
         navigator.serviceWorker.register('sw.js');
     }
 </script>
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(reg => {
+            // Tarkistetaan päivitykset heti kun sivu ladataan
+            reg.update();
+
+            reg.addEventListener('updatefound', () => {
+                const newWorker = reg.installing;
+                newWorker.addEventListener('statechange', () => {
+                    // Jos uusi SW on asennettu ja vanha on jo hallinnassa (controller)
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                        const banner = document.getElementById('update-banner');
+                        if (banner) banner.style.display = 'block';
+                    }
+                });
+            });
+        });
+    });
+}
+
 </body>
 </html>

@@ -129,4 +129,22 @@ input[type="time"], input[type="number"] {
     padding: 10px 20px; border-radius: 20px; display: none;
 }
 
-#update-banner { display: none; background: #333; color: white; width: 100%; padding: 10px; text-align: center; border-radius: 5px; margin-bottom: 10px; }
+#update-banner {
+    display: none; /* Piilotettu oletuksena */
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b; /* Tumma tyylikäs sininen */
+    color: white;
+    padding: 15px 25px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 9999; /* Varmistaa, että on kaiken päällä */
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid var(--accent-color);
+}
