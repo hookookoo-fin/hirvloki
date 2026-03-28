@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hirv-loki-v6';
+const CACHE_NAME = 'hirv-loki-v7';
 const ASSETS = [
   'index.html',
   'style.css',

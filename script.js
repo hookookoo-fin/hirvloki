@@ -1,4 +1,3 @@
-// script.js
 let historyData = JSON.parse(localStorage.getItem('hirvHistory')) || [];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,7 +22,6 @@ function setNow(btn, targetClass) {
     calculateDifference(card);
 }
 
-// Kolmannen kortin "Nyt"
 function setNowSpecial() {
     const now = new Date();
     const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
@@ -111,8 +109,40 @@ function saveResult(btn) {
     localStorage.setItem('hirvHistory', JSON.stringify(historyData));
     renderHistory();
     
-    // Tyhjennys tallennuksen jälkeen
+    // Tyhjennys
+    card.querySelector('.header-input').value = "";
+    card.querySelector('.t1').value = "";
+    card.querySelector('.t2').value = "";
+    card.querySelector('.result').innerText = "0 min";
     card.querySelector('.event-list').innerHTML = "";
+}
+
+// MUOKKAUSTOIMINTO: Palauttaa tiedot korttiin 1
+function editItem(id) {
+    const item = historyData.find(i => i.id === id);
+    if (!item) return;
+
+    if(!confirm("Palautetaanko tämä tapahtuma muokattavaksi korttiin 1? (Vanha tallennus poistuu)")) return;
+
+    const card = document.getElementById('calc-1');
+    card.querySelector('.header-input').value = item.title;
+    card.querySelector('.t1').value = item.start;
+    card.querySelector('.t2').value = item.end;
+    
+    const list = card.querySelector('.event-list');
+    list.innerHTML = "";
+    item.events.forEach(e => {
+        const div = document.createElement('div');
+        div.className = 'event-tag';
+        div.dataset.time = e.time;
+        div.dataset.text = e.text;
+        div.innerHTML = `<span>${e.time} ${e.text}</span> <button onclick="this.parentElement.remove()">×</button>`;
+        list.appendChild(div);
+    });
+
+    calculateDifference(card);
+    deleteItem(id); // Poistetaan vanha, jotta uusi korvaa sen tallennettaessa
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function renderHistory() {
@@ -131,8 +161,9 @@ function renderHistory() {
                 ${eventHtml}
             </div>
             <div class="history-actions">
-                <button class="copy-item-btn" onclick="copySingleItem(${item.id})">📋</button>
-                <button onclick="deleteItem(${item.id})">×</button>
+                <button class="edit-item-btn" onclick="editItem(${item.id})" title="Muokkaa">✏️</button>
+                <button class="copy-item-btn" onclick="copySingleItem(${item.id})" title="Kopioi">📋</button>
+                <button onclick="deleteItem(${item.id})" title="Poista">×</button>
             </div>
         `;
         list.appendChild(div);

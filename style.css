@@ -38,9 +38,10 @@ body {
     box-shadow: var(--shadow); border: 1px solid #e2e8f0;
 }
 
+/* Erottuva taustaväri kolmannelle kortille (Aikalaskin) */
 .special-card {
-    background-color: #eef2ff !important; /* Pakotetaan väri */
-    border: 1px solid #c7d2fe !important;
+    background-color: #fef9c3 !important; /* Kirkas hiekan keltainen */
+    border: 2px solid #facc15 !important;
 }
 
 .card-header-row { display: flex; align-items: center; gap: 10px; }
@@ -99,8 +100,26 @@ input[type="time"], input[type="number"] {
     display: flex; justify-content: space-between; border-left: 5px solid var(--success-color); box-shadow: var(--shadow);
 }
 
-.history-actions { display: flex; align-items: center; gap: 10px; }
+/* Muutetaan historian toiminnot tiiviimmäksi */
+.history-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .copy-item-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+
+/* Editointinapin tyyli */
+.edit-item-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-right: 5px;
+    filter: sepia(1); /* Antaa hieman ruskehtavan sävyn */
+}
+
+
 .event-row-saved { font-size: 0.85rem; color: #475569; white-space: pre; }
 
 .danger-link { background: none; border: none; color: var(--danger-color); width: 100%; margin-top: 20px; cursor: pointer; }
