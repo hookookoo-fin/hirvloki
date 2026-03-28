@@ -4,10 +4,11 @@
     --accent-color: #8b5a2b;
     --success-color: #166534;
     --danger-color: #991b1b;
-    --bg-color: #f1f5f9;
+    /* Muutettu tummanvihreäksi (kotinäytön vihreä) */
+    --bg-color: #1a3317; 
     --card-bg: #ffffff;
     --text-color: #1e293b;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
     --border-radius: 12px;
 }
 
@@ -17,11 +18,37 @@ body {
     color: var(--text-color);
     margin: 0; padding: 10px;
     display: flex; flex-direction: column; align-items: center;
+    min-height: 100vh;
+}
+
+/* Versionumeron tyyli otsikon alla */
+.version-tag {
+    color: #a7f3d0; /* Vaaleanvihreä, erottuu tummasta taustasta */
+    font-size: 0.75rem;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    opacity: 0.8;
 }
 
 .main-header {
-    display: flex; justify-content: space-between; align-items: center;
-    width: 100%; max-width: 500px; margin-bottom: 20px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%; 
+    max-width: 500px; 
+    margin-bottom: 20px;
+    color: white; /* Lisää tämä, jotta otsikko on valkoinen tummalla taustalla */
+}
+
+.main-header h1 {
+    font-size: 1.5rem;
+    color: #ffffff; /* Otsikko valkoiseksi, jotta erottuu tummasta */
+    margin: 0;
+}
+
+
+.history-header h3 {
+    color: #ffffff;
 }
 
 .reset-all-btn {

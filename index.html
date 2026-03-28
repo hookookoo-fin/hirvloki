@@ -21,6 +21,9 @@
     <button class="reset-all-btn" onclick="resetEverything()" title="Nollaa kaikki">⟲</button>
 </div>
 
+/* MUISTA PÄIVITTÄÄ VERSIO vs SW.JS */
+<div class="version-tag">Versio 1.0.10 (SW: v10)</div>
+
 <div class="calculators-container">
     <script>
         for(let i=1; i<=2; i++) {
@@ -113,6 +116,7 @@
     }
 </script>
 
+<script>
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').then(reg => {
@@ -132,6 +136,7 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
+</script>
 
 </body>
 </html>
