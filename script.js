@@ -1,6 +1,6 @@
+// script.js
 let historyData = JSON.parse(localStorage.getItem('hirvHistory')) || [];
 
-// Alustus
 document.addEventListener('DOMContentLoaded', () => {
     renderHistory();
     setupListeners();
@@ -23,6 +23,15 @@ function setNow(btn, targetClass) {
     calculateDifference(card);
 }
 
+// Kolmannen kortin "Nyt"
+function setNowSpecial() {
+    const now = new Date();
+    const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
+                    now.getMinutes().toString().padStart(2, '0');
+    document.querySelector('.t-start').value = timeStr;
+    calculateEndTime();
+}
+
 function addEventText(btn) {
     const card = btn.closest('.calculator-card');
     const timeInput = card.querySelector('.event-time');
@@ -39,11 +48,12 @@ function addEventText(btn) {
     list.appendChild(div);
     
     textInput.value = "";
+    timeInput.value = "";
 }
 
 function calculateDifference(card) {
-    const t1 = card.querySelector('.t1').value;
-    const t2 = card.querySelector('.t2').value;
+    const t1 = card.querySelector('.t1')?.value;
+    const t2 = card.querySelector('.t2')?.value;
     if (!t1 || !t2) return;
 
     const [h1, m1] = t1.split(':').map(Number);
@@ -52,6 +62,25 @@ function calculateDifference(card) {
     let diff = (h2 * 60 + m2) - (h1 * 60 + m1);
     if (diff < 0) diff += 1440;
     card.querySelector('.result').innerText = diff + " min";
+}
+
+function calculateEndTime() {
+    const startVal = document.querySelector('.t-start').value;
+    const durationVal = document.querySelector('.duration-input').value;
+    const resultDiv = document.querySelector('.end-result');
+
+    if (!startVal || !durationVal) {
+        resultDiv.innerText = "--:--";
+        return;
+    }
+
+    const [h, m] = startVal.split(':').map(Number);
+    let totalMinutes = h * 60 + m + parseInt(durationVal);
+    totalMinutes = totalMinutes % 1440;
+
+    const endH = Math.floor(totalMinutes / 60).toString().padStart(2, '0');
+    const endM = (totalMinutes % 60).toString().padStart(2, '0');
+    resultDiv.innerText = `${endH}:${endM}`;
 }
 
 function saveResult(btn) {
@@ -78,102 +107,17 @@ function saveResult(btn) {
     };
 
     historyData.push(entry);
-    // Sorttaus aloitusaikojen mukaan (vanhin ensin)
     historyData.sort((a, b) => a.start.localeCompare(b.start));
-    
     localStorage.setItem('hirvHistory', JSON.stringify(historyData));
     renderHistory();
     
-    // Tyhjennä tapahtumat kortista
+    // Tyhjennys tallennuksen jälkeen
     card.querySelector('.event-list').innerHTML = "";
 }
 
-function copyAllToClipboard() {
-    const text = historyData.map(item => {
-        let str = `${item.title}\n${item.start} - ${item.end} (${item.duration})`;
-        item.events.forEach(e => {
-            str += `\n    ${e.time} ${e.text}`;
-        });
-        return str;
-    }).join('\n\n');
-    
-    navigator.clipboard.writeText(text);
-    showToast();
-}
-
-function deleteItem(id) {
-    historyData = historyData.filter(i => i.id !== id);
-    localStorage.setItem('hirvHistory', JSON.stringify(historyData));
-    renderHistory();
-}
-
-function showToast() {
-    const t = document.getElementById('toast');
-    t.style.display = 'block';
-    setTimeout(() => t.style.display = 'none', 2000);
-}
-
-//---
-// Yksittäisen kortin tyhjennys
-function resetCard(id) {
-    if(confirm("Tyhjennetäänkö tämän kortin tiedot?")) {
-        const card = document.getElementById(`calc-${id}`);
-        card.querySelectorAll('input').forEach(input => input.value = "");
-        if(id < 3) {
-            card.querySelector('.result').innerText = "0 min";
-            card.querySelector('.event-list').innerHTML = "";
-        } else {
-            card.querySelector('.end-result').innerText = "--:--";
-        }
-    }
-}
-
-// Yläpalkin nollausnapin korjaus
-function resetEverything() {
-    if(confirm("Tyhjennetäänkö kaikki kortit?")) {
-        document.querySelectorAll('input').forEach(i => i.value = "");
-        document.querySelectorAll('.result').forEach(r => r.innerText = "0 min");
-        document.querySelectorAll('.event-list').forEach(e => e.innerHTML = "");
-        const specialResult = document.querySelector('.end-result');
-        if(specialResult) specialResult.innerText = "--:--";
-    }
-}
-
-// Kolmannen kortin laskenta
-function calculateEndTime() {
-    const startVal = document.querySelector('.t-start').value;
-    const durationVal = document.querySelector('.duration-input').value;
-    const resultDiv = document.querySelector('.end-result');
-
-    if (!startVal || !durationVal) {
-        resultDiv.innerText = "--:--";
-        return;
-    }
-
-    const [h, m] = startVal.split(':').map(Number);
-    let totalMinutes = h * 60 + m + parseInt(durationVal);
-    
-    // Yli vuorokauden menevät ajat
-    totalMinutes = totalMinutes % 1440;
-
-    const endH = Math.floor(totalMinutes / 60).toString().padStart(2, '0');
-    const endM = (totalMinutes % 60).toString().padStart(2, '0');
-    
-    resultDiv.innerText = `${endH}:${endM}`;
-}
-
-function setNowSpecial() {
-    const now = new Date();
-    document.querySelector('.t-start').value = 
-        now.getHours().toString().padStart(2, '0') + ":" + 
-        now.getMinutes().toString().padStart(2, '0');
-    calculateEndTime();
-}
-
-// Historian renderöinti (lisätty kopiointinappi)
 function renderHistory() {
     const list = document.getElementById('history-list');
-    list.innerHTML = "";
+    list.innerHTML = historyData.length === 0 ? '<p style="text-align:center; color:gray;">Ei tallennettuja tapahtumia.</p>' : '';
 
     historyData.forEach(item => {
         const div = document.createElement('div');
@@ -187,8 +131,8 @@ function renderHistory() {
                 ${eventHtml}
             </div>
             <div class="history-actions">
-                <button class="copy-item-btn" onclick="copySingleItem(${item.id})" title="Kopioi">📋</button>
-                <button onclick="deleteItem(${item.id})" title="Poista">×</button>
+                <button class="copy-item-btn" onclick="copySingleItem(${item.id})">📋</button>
+                <button onclick="deleteItem(${item.id})">×</button>
             </div>
         `;
         list.appendChild(div);
@@ -199,7 +143,57 @@ function copySingleItem(id) {
     const item = historyData.find(i => i.id === id);
     let str = `${item.title}\n${item.start} - ${item.end} (${item.duration})`;
     item.events.forEach(e => { str += `\n    ${e.time} ${e.text}`; });
-    
-    navigator.clipboard.writeText(str);
-    showToast();
+    navigator.clipboard.writeText(str).then(showToast);
+}
+
+function copyAllToClipboard() {
+    const text = historyData.map(item => {
+        let str = `${item.title}\n${item.start} - ${item.end} (${item.duration})`;
+        item.events.forEach(e => { str += `\n    ${e.time} ${e.text}`; });
+        return str;
+    }).join('\n\n');
+    navigator.clipboard.writeText(text).then(showToast);
+}
+
+function resetCard(id) {
+    if(confirm("Tyhjennetäänkö kortti?")) {
+        const card = document.getElementById(`calc-${id}`);
+        card.querySelectorAll('input').forEach(i => i.value = "");
+        if(id < 3) {
+            card.querySelector('.result').innerText = "0 min";
+            card.querySelector('.event-list').innerHTML = "";
+        } else {
+            card.querySelector('.end-result').innerText = "--:--";
+        }
+    }
+}
+
+function resetEverything() {
+    if(confirm("Tyhjennetäänkö kaikki kortit?")) {
+        document.querySelectorAll('input').forEach(i => i.value = "");
+        document.querySelectorAll('.result').forEach(r => r.innerText = "0 min");
+        document.querySelectorAll('.event-list').forEach(e => e.innerHTML = "");
+        const special = document.querySelector('.end-result');
+        if(special) special.innerText = "--:--";
+    }
+}
+
+function deleteItem(id) {
+    historyData = historyData.filter(i => i.id !== id);
+    localStorage.setItem('hirvHistory', JSON.stringify(historyData));
+    renderHistory();
+}
+
+function clearHistory() {
+    if(confirm("Tyhjennetäänkö koko historia?")) {
+        historyData = [];
+        localStorage.removeItem('hirvHistory');
+        renderHistory();
+    }
+}
+
+function showToast() {
+    const t = document.getElementById('toast');
+    t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 2000);
 }

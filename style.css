@@ -1,343 +1,113 @@
 /* style.css */
 :root {
-    --primary-color: #2d5a27; /* Metsänvihreä */
-    --accent-color: #8b5a2b;  /* Ruskea */
-    --success-color: #166534; /* Tummanvihreä */
-    --danger-color: #991b1b;  /* Punainen */
+    --primary-color: #2d5a27;
+    --accent-color: #8b5a2b;
+    --success-color: #166534;
+    --danger-color: #991b1b;
     --bg-color: #f1f5f9;
     --card-bg: #ffffff;
     --text-color: #1e293b;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    margin: 0;
-    padding: 10px; /* Pienempi suoja-alue reunoilla */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 16px; /* Hieman suurempi perusfontti */
-}
-
-#update-banner {
-    display: none;
-    background: #1e293b;
-    color: white;
-    padding: 15px;
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-    border-radius: var(--border-radius);
-    margin-bottom: 15px;
-    cursor: pointer;
-    box-shadow: var(--shadow);
+    margin: 0; padding: 10px;
+    display: flex; flex-direction: column; align-items: center;
 }
 
 .main-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 20px;
-    padding: 0 10px;
-}
-
-.main-header h1 {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    margin: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    width: 100%; max-width: 500px; margin-bottom: 20px;
 }
 
 .reset-all-btn {
-    background: var(--danger-color);
-    color: white;
-    border: none;
-    width: 45px; /* Suurempi painike */
-    height: 45px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    box-shadow: var(--shadow);
+    background: var(--danger-color); color: white; border: none;
+    width: 45px; height: 45px; border-radius: 50%; font-size: 1.2rem;
 }
 
 .calculators-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 30px;
+    display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 500px;
 }
 
 .calculator-card {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    border: 1px solid #e2e8f0;
+    background: var(--card-bg); padding: 20px; border-radius: var(--border-radius);
+    box-shadow: var(--shadow); border: 1px solid #e2e8f0;
 }
+
+.special-card {
+    background-color: #eef2ff !important; /* Pakotetaan väri */
+    border: 1px solid #c7d2fe !important;
+}
+
+.card-header-row { display: flex; align-items: center; gap: 10px; }
 
 .header-input {
-    width: 100%;
-    border: none;
-    border-bottom: 2px solid var(--primary-color);
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    padding: 8px 0;
-    outline: none;
-    background: transparent;
-    color: var(--primary-color);
-}
-
-.time-section {
-    margin-bottom: 15px;
-}
-
-.time-section label {
-    font-size: 0.9rem;
-    color: #64748b;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.time-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-input[type="time"] {
-    flex-grow: 1;
-    padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    background: white;
-}
-
-.now-btn {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.event-input-group {
-    border-top: 1px solid #e2e8f0;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 15px 0;
-    margin: 15px 0;
-}
-
-.event-input-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.event-input-row input[type="time"] {
-    flex: 0 0 100px;
-}
-
-.event-input-row input[type="text"] {
-    flex-grow: 1;
-    padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.add-txt-btn {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 12px 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.event-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.event-tag {
-    background: #f1f5f9;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    border: 1px solid #e2e8f0;
-}
-
-.event-tag button {
-    background: none;
-    border: none;
-    color: var(--danger-color);
-    cursor: pointer;
-    padding: 0;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.result-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 15px 0;
-    padding: 15px;
-    background: #f8fafc;
-    border-radius: 10px;
-    border: 2px solid var(--accent-color);
-}
-
-.diff-label { font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: bold; }
-.diff-value { font-size: 2rem; font-weight: 800; color: var(--accent-color); }
-
-.save-btn {
-    background-color: var(--success-color);
-    color: white;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1.1rem;
-    box-shadow: var(--shadow);
-}
-
-.history-container {
-    width: 100%;
-    max-width: 500px;
-    margin-top: 20px;
-    border-top: 2px solid #e2e8f0;
-    padding-top: 20px;
-}
-
-.history-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.copy-all-btn {
-    background: #64748b;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.history-item {
-    background: white;
-    padding: 15px;
-    border-radius: var(--border-radius);
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    box-shadow: var(--shadow);
-    border-left: 5px solid var(--success-color);
-}
-
-.history-item button {
-    background: none;
-    border: none;
-    color: var(--danger-color);
-    cursor: pointer;
-    font-size: 1.3rem;
-    padding: 0;
-}
-
-.event-row-saved {
-    font-size: 0.9rem;
-    color: #475569;
-    white-space: pre-wrap; /* Säilyttää sisennyksen */
-    margin-top: 3px;
-}
-
-.danger-link {
-    background: none;
-    border: none;
-    color: var(--danger-color);
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.9rem;
-}
-
-.toast {
-    position: fixed;
-    bottom: 30px;
-    background: #1e293b;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 25px;
-    font-size: 1rem;
-    display: none;
-    z-index: 1000;
-}
-/* Kortin ylärivin asettelu nollausnapille */
-.card-header-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-grow: 1; border: none; border-bottom: 2px solid var(--primary-color);
+    font-size: 1.1rem; font-weight: bold; padding: 5px; outline: none; background: transparent;
 }
 
 .reset-card-btn {
-    background: none;
-    border: 1px solid #cbd5e1;
-    color: #64748b;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: none; border: 1px solid #cbd5e1; color: #64748b;
+    width: 35px; height: 35px; border-radius: 50%; cursor: pointer;
 }
 
-/* Kolmannen kortin erottuva taustaväri */
-.special-card {
-    background-color: #eef2ff; /* Kevyt sinertävä/vaalea tausta */
-    border: 1px solid #c7d2fe;
+.time-section { margin: 15px 0; }
+.time-section label { font-size: 0.8rem; font-weight: bold; color: #64748b; }
+
+.time-row { display: flex; gap: 10px; align-items: center; }
+input[type="time"], input[type="number"] {
+    flex-grow: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem;
 }
 
-/* Historian kopiointinappi */
-.copy-item-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-    padding: 5px;
-    margin-right: 10px;
-    opacity: 0.7;
+.now-btn {
+    background: var(--accent-color); color: white; border: none;
+    padding: 12px 15px; border-radius: 8px; font-weight: bold;
 }
 
-.copy-item-btn:hover { opacity: 1; }
-
-.history-actions {
-    display: flex;
-    align-items: center;
+/* KORJAUS: Tapahtumarivi mahtuu näytölle */
+.event-input-row {
+    display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;
 }
+.event-input-row .event-time { flex: 0 0 85px; }
+.event-input-row .event-text { flex: 1 1 150px; }
+.event-input-row .add-txt-btn { flex: 0 0 60px; background: var(--primary-color); color: white; border: none; border-radius: 8px; font-weight: bold; }
+
+.event-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+.event-tag {
+    background: #e2e8f0; padding: 4px 10px; border-radius: 15px; font-size: 0.8rem;
+    display: flex; align-items: center; gap: 5px;
+}
+.event-tag button { background: none; border: none; color: var(--danger-color); font-weight: bold; cursor: pointer; }
+
+.result-area {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 15px; background: #f8fafc; border-radius: 10px; border: 2px solid var(--accent-color); margin: 15px 0;
+}
+.diff-value { font-size: 1.8rem; font-weight: bold; color: var(--accent-color); }
+
+.save-btn {
+    width: 100%; padding: 15px; background: var(--success-color); color: white;
+    border: none; border-radius: 10px; font-weight: bold; font-size: 1rem;
+}
+
+.history-item {
+    background: white; padding: 15px; border-radius: 10px; margin-top: 10px;
+    display: flex; justify-content: space-between; border-left: 5px solid var(--success-color); box-shadow: var(--shadow);
+}
+
+.history-actions { display: flex; align-items: center; gap: 10px; }
+.copy-item-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+.event-row-saved { font-size: 0.85rem; color: #475569; white-space: pre; }
+
+.danger-link { background: none; border: none; color: var(--danger-color); width: 100%; margin-top: 20px; cursor: pointer; }
+
+.toast {
+    position: fixed; bottom: 20px; background: #333; color: white;
+    padding: 10px 20px; border-radius: 20px; display: none;
+}
+
+#update-banner { display: none; background: #333; color: white; width: 100%; padding: 10px; text-align: center; border-radius: 5px; margin-bottom: 10px; }
