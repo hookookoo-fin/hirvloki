@@ -51,9 +51,21 @@ body {
     color: #ffffff;
 }
 
+/* Yläpalkin iso nollausnappi */
 .reset-all-btn {
-    background: var(--danger-color); color: white; border: none;
-    width: 45px; height: 45px; border-radius: 50%; font-size: 2.5rem;
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    /* MUUTOKSET TÄSSÄ: */
+    font-size: 1.8rem;   /* Suurennettu (oli 1.2) */
+    font-weight: 900;    /* Erittäin paksu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .calculators-container {
@@ -78,9 +90,21 @@ body {
     font-size: 1.1rem; font-weight: bold; padding: 5px; outline: none; background: transparent;
 }
 
+/* Korttikohtainen pieni nollausnappi */
 .reset-card-btn {
-    background: none; border: 1px solid #cbd5e1; color: #64748b;
-    width: 35px; height: 35px; border-radius: 50%; cursor: pointer;
+    background: white; /* Valkoinen tausta erottuu paremmin */
+    border: 2px solid #cbd5e1;
+    color: var(--danger-color); /* Punainen symboli huomion vuoksi */
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    /* MUUTOKSET TÄSSÄ: */
+    font-size: 1.4rem;   /* Suurennettu (oli 1.0) */
+    font-weight: bold;   /* Paksumpi symboli */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .time-section { margin: 15px 0; }
@@ -149,7 +173,24 @@ input[type="time"], input[type="number"] {
 
 .event-row-saved { font-size: 0.85rem; color: #475569; white-space: pre; }
 
-.danger-link { background: none; border: none; color: var(--danger-color); width: 100%; margin-top: 20px; cursor: pointer; }
+.danger-link {
+    background: none;
+    border: none;
+    /* MUUTOS TÄSSÄ: */
+    color: #f87171; /* Vaaleampi/kirkkaampi punainen, joka näkyy tummalla vihreällä */
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline; /* Lisää alleviivaus, jotta se näyttää linkiltä */
+    opacity: 0.8;
+}
+
+.danger-link:hover {
+    opacity: 1;
+    color: #ef4444; /* Voimakkaampi punainen kun viedään hiiri päälle */
+}
 
 .toast {
     position: fixed; bottom: 20px; background: #333; color: white;
