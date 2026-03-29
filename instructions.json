@@ -3,19 +3,19 @@
   "sections": [
     {
       "heading": "Tapahtumalohkot (Kortit 1 & 2)",
-      "text": "Käytä näitä koiran suorituksen seurantaan. Voit asettaa <aloitusaika> ja <lopetusaika> ajat 'Nyt'-nappia käyttämällä tai syöttämällä ajan käsin. '+txt' -napilla voit lisätä yksittäisiä tapahtumia, muistiinpanoja jne aikaleimalla (esim. AT, YO, Kam, jne)."
+      "text": "Käytä näitä koiran suorituksen ja tapahtumien seurantaan. Voit asettaa <b>[Aloitusaika]</b> ja <b>[Lopetusaika]</b> ajat <b>'Nyt'</b>-napilla tai vapaasti aikakentässä. <b>'+txt'</b> -napilla voit lisätä yksittäisiä tapahtumia, muistiinpanoja jne aikaleimalla varustettuna (esim. AT, YO, Kam, jne)."
     },
     {
       "heading": "Tallentaminen ja Muokkaus",
-      "text": "Tallenna-nappi (💾) siirtää tiedot tapahtumalokiin aikajärjestykseen, myös +txt merkinnät kortin (lohkon) sisällä. Voit muokata jo tallennettua tapahtumaa painamalla kynä-ikonia (✏️), jolloin ne palautuvat <b>korttiin 1</b> muokattavaksi. Koska tiedot poistuvat tällöin lokista, muista tallentaa ne uudestaan lokiin muokkaksen jälkeen."
+      "text": "<b>Tallenna</b>-nappi (💾) siirtää tiedot tapahtumalokiin aikajärjestykseen, myös +txt merkinnät kortin (lohkon) sisällä. Voit <b>muokata</b> jo tallennettua tapahtumaa painamalla kynä-ikonia (✏️), jolloin ne palautuvat <b>korttiin 1</b> muokattavaksi. Koska tiedot poistuvat tällöin lokista, muista tallentaa ne uudestaan lokiin muokkaksen jälkeen."
     },
     {
       "heading": "Aikalaskin (Keltainen kortti)",
-      "text": "Tämä on aputyökalu esim LH, UH, TA tai erän päättymisajan laskemiseen. Syötä aloitusaika ja kesto minuutteina (esim. 300), niin sovellus laskee lopetusajan automaattisesti."
+      "text": "Tämä on <b>aputyökalu</b> esim LH, UH, TA tai erän päättymisajan laskemiseen. Syötä aloitusaika ja kesto minuutteina (esim. 300), niin sovellus laskee lopetusajan automaattisesti."
     },
     {
       "heading": "Raportti",
-      "text": "Voit kopioida kaikki tiedot Tapahtumalokilta 'Kopioi kaikki' -napilla ja liittää ne esim. viesti- tai muuhun sovellukseen. Tietoja voi kopioida myös lohko kerrallaan."
+      "text": "Voit kopioida kaikki tiedot Tapahtumalokilta <b>'Kopioi kaikki'</b> -napilla ja liittää ne esim. viesti- tai muuhun sovellukseen. Tietoja voi kopioida <b>myös lohko kerrallaan</b>."
     },
     {
       "heading": "Vinkki",
