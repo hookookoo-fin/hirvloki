@@ -240,7 +240,7 @@ async function toggleInstructions() {
             const response = await fetch('instructions.json');
             const data = await response.json();
             
-            let html = `<t1>${data.title}</t1>`;
+            let html = `<h4>${data.title}</h4>`;
             data.sections.forEach(s => {
                 html += `<h2>${s.heading}</h2><p>${s.text}</p>`;
             });
