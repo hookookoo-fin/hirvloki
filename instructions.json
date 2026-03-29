@@ -1,5 +1,5 @@
 {
-  "title": "HIRV Tapahtumaloki - Ohjeet",
+  "h1": "Tapahtumaloki - Ohjeet",
   "sections": [
     {
       "heading": "Tapahtumalohkot (Kortit 1 & 2)",
@@ -7,15 +7,19 @@
     },
     {
       "heading": "Tallentaminen ja Muokkaus",
-      "text": "Tallenna-nappi siirtää tiedot historiaan aikajärjestykseen, myös +txt merkinnät kortin (lohkon) sisällä. Voit muokata jo tallennettua tapahtumaa painamalla kynä-ikonia (✏️), jolloin tiedot palautuvat korttiin 1 muokattavaksi."
+      "text": "Tallenna-nappi siirtää tiedot tapahtumalokiin aikajärjestykseen, myös +txt merkinnät kortin (lohkon) sisällä. Voit muokata jo tallennettua tapahtumaa painamalla kynä-ikonia (✏️), jolloin tiedot palautuvat korttiin 1 muokattavaksi."
     },
     {
       "heading": "Aikalaskin (Keltainen kortti)",
       "text": "Tämä on aputyökalu esim LH, UH, TA ja erän päättymisajan laskemiseen. Syötä aloitusaika ja kesto minuutteina (esim. 300), niin sovellus laskee lopetusajan automaattisesti."
     },
     {
-      "heading": "Varmuuskopiointi",
-      "text": "Muista kopioida loki 'Kopioi kaikki' -napilla ja liittää se esim. viestisovellukseen kokeen päätteeksi. Tiedot säilyvät puhelimen muistissa, ellet tyhjennä historiaa. Tietoja voi kopioida myös lohko kerrallaan."
-    }
+      "heading": "Raportti",
+      "text": "Voit kopioida kaikki tiedot Tapahtumalokilta 'Kopioi kaikki' -napilla ja liittää ne esim. viesti- tai muuhun sovellukseen. Tietoja voi kopioida myös lohko kerrallaan."
+    },
+    {
+      "heading": "Vinkki",
+      "text": "*Sovellus toimii offline-tilassa ja muistaa tulokset, vaikka sulkisit sovelluksen.*"
+    },
   ]
 }

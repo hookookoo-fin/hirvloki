@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hirv-loki-v14; // MUISTA KASVATTAA TÄTÄ JOKAINEN KERTA
+const CACHE_NAME = 'hirv-loki-v15; // MUISTA KASVATTAA TÄTÄ JOKAINEN KERTA
 const ASSETS = [
   './',
   './index.html',
