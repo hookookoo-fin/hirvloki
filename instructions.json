@@ -3,15 +3,15 @@
   "sections": [
     {
       "heading": "Tapahtumalohkot (Kortit 1 & 2)",
-      "text": "Käytä näitä koiran suorituksen seurantaan. Voit asettaa aloitusaika ja lopetusaika 'Nyt'-nappia käyttämällä tai syöttämällä ajan käsin. '+txt' -napilla voit lisätä yksittäisiä tapahtumia, muistiinpanoja jne (esim. AT, YO, Kam, jne) aikaleimalla."
+      "text": "Käytä näitä koiran suorituksen seurantaan. Voit asettaa <aloitusaika> ja <lopetusaika> ajat 'Nyt'-nappia käyttämällä tai syöttämällä ajan käsin. '+txt' -napilla voit lisätä yksittäisiä tapahtumia, muistiinpanoja jne aikaleimalla (esim. AT, YO, Kam, jne)."
     },
     {
       "heading": "Tallentaminen ja Muokkaus",
-      "text": "Tallenna-nappi siirtää tiedot tapahtumalokiin aikajärjestykseen, myös +txt merkinnät kortin (lohkon) sisällä. Voit muokata jo tallennettua tapahtumaa painamalla kynä-ikonia (✏️), jolloin tiedot palautuvat korttiin 1 muokattavaksi."
+      "text": "Tallenna-nappi (💾) siirtää tiedot tapahtumalokiin aikajärjestykseen, myös +txt merkinnät kortin (lohkon) sisällä. Voit muokata jo tallennettua tapahtumaa painamalla kynä-ikonia (✏️), jolloin ne palautuvat <b>korttiin 1</b> muokattavaksi. Koska tiedot poistuvat tällöin lokista, muista tallentaa ne uudestaan lokiin muokkaksen jälkeen."
     },
     {
       "heading": "Aikalaskin (Keltainen kortti)",
-      "text": "Tämä on aputyökalu esim LH, UH, TA ja erän päättymisajan laskemiseen. Syötä aloitusaika ja kesto minuutteina (esim. 300), niin sovellus laskee lopetusajan automaattisesti."
+      "text": "Tämä on aputyökalu esim LH, UH, TA tai erän päättymisajan laskemiseen. Syötä aloitusaika ja kesto minuutteina (esim. 300), niin sovellus laskee lopetusajan automaattisesti."
     },
     {
       "heading": "Raportti",
