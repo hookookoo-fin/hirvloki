@@ -74,12 +74,14 @@ body {
 
 /* Lisää rako korttien välille */
 .calculators-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;          /* Kasvatettu 15px -> 20px tuomaan selkeyttä */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 25px !important;       /* Nostetaan hieman (25px) jotta ero on selkeä */
     width: 100%;
     max-width: 500px;
-    margin-bottom: 30px;
+    margin-top: 10px;           /* Väli yläpalkkiin */
+    margin-bottom: 40px;        /* Väli historiaan */
+    padding: 0 5px;             /* Pieni sisäänveto sivuilta */
 }
 
 /* Lisätään hieman selkeämpi reunus ja varjo erottamaan kortit tummasta taustasta */
@@ -87,8 +89,14 @@ body {
     background: var(--card-bg);
     padding: 18px;      /* Hieman tiivistetty sisäreuna, jotta ulkopuolelle jää tilaa */
     border-radius: var(--border-radius);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Syvempi varjo korostaa korttia */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Syvempi varjo korostaa korttia */
     border: 1px solid rgba(255, 255, 255, 0.1); /* Erittäin hieno vaalea reunus */
+    /* Varmistetaan että kortit eivät sulaudu toisiinsa */
+    margin-bottom: 5px; 
+}
+
+.calculator-card + .calculator-card {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Erottuva taustaväri kolmannelle kortille (Aikalaskin) */
