@@ -115,6 +115,7 @@ body {
 .time-section label { font-size: 0.8rem; font-weight: bold; color: #64748b; }
 
 .time-row { display: flex; gap: 10px; align-items: center; }
+
 input[type="time"], input[type="number"] {
     flex-grow: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem;
 }
@@ -125,35 +126,43 @@ input[type="time"], input[type="number"] {
 }
 
 /* Tiivistys: Alku- ja lopetusaika samalle riville */
+/* Lisää tai korvaa nämä style.css-tiedostossa */
 
 .time-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Kaksi tasakokoista saraketta */
-    gap: 10px; /* Väli sarakkeiden välillä */
-    margin-bottom: 10px;
+    display: flex;       /* Käytetään flexiä gridin sijaan, se on varmempi */
+    flex-direction: row; /* Pakotetaan riviksi */
+    gap: 10px;           /* Väli lohkojen väliin */
+    width: 100%;
+    margin-bottom: 15px;
 }
 
-/* Kavennetaan aikakenttää ja nappia, jotta ne mahtuvat puolet kapeampaan tilaan */
+/* Tämä varmistaa, että molemmat puoliskot (Alku ja Loppu) ovat tasan 50% leveitä */
+.time-grid .time-section {
+    flex: 1;             
+    min-width: 0;        /* Estää puskemasta reunan yli */
+    margin-bottom: 0;    /* Poistetaan aiempi alempi marginaali */
+}
+
+/* Varmistetaan, että input ja nappi mahtuvat vierekkäin pikkulohkossa */
 .time-grid .time-row {
+    display: flex;
     gap: 4px;
+    width: 100%;
 }
 
 .time-grid input[type="time"] {
-    padding: 8px 4px; /* Hieman tiiviimpi täyte */
-    font-size: 0.95rem;
-    min-width: 0; /* Estää inputia rikkomasta gridiä */
+    flex: 1;             /* Vie kaiken vapaan tilan */
+    padding: 8px 2px;    /* Tiivistetty sivusuunnassa */
+    font-size: 0.9rem;
+    min-width: 0;        /* Kriittinen: antaa selaimen kaventaa kenttää */
 }
 
 .time-grid .now-btn {
-    padding: 8px 10px;
-    font-size: 0.85rem;
-    flex-shrink: 0;
+    flex: 0 0 auto;      /* Nappi ei muuta kokoaan */
+    padding: 8px 6px;
+    font-size: 0.8rem;
 }
 
-.time-grid .time-section label {
-    font-size: 0.75rem; /* Pienempi otsikko mahtuu paremmin */
-    white-space: nowrap;
-}
 
 /* KORJAUS: Tapahtumarivi mahtuu näytölle */
 .event-input-row {
