@@ -32,7 +32,7 @@
 </div>
 
 /* MUISTA PÄIVITTÄÄ VERSIO vs SW.JS */
-<div class="version-tag">Versio 1.0.23</div>
+<div class="version-tag">Versio 1.0.24</div>
 
 <div class="calculators-container">
     <script>
@@ -88,25 +88,27 @@
             <button class="reset-card-btn" onclick="resetCard(3)">⟲</button>
         </div>
         
-        <div class="time-section">
-            <label>Aloitusaika</label>
-            <div class="time-row">
-                <input type="time" class="t-start" oninput="calculateEndTime()">
-                <button class="now-btn" onclick="setNowSpecial()">Nyt</button>
+        <div class="time-grid">
+            <div class="time-section">
+                <label>Aloitusaika</label>
+                <div class="time-row">
+                    <input type="time" class="t-start" oninput="calculateEndTime()">
+                    <button class="now-btn" onclick="setNowSpecial()">Nyt</button>
+                </div>
+            </div>
+
+            <div class="time-section">
+                <label>Kesto (min)</label>
+                <input type="number" class="duration-input" placeholder="min" oninput="calculateEndTime()" 
+                    style="width: 100%; padding: 8px 4px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1.1rem; box-sizing: border-box;">
             </div>
         </div>
 
-        <div class="time-section">
-            <label>Kesto (minuuttia)</label>
-            <input type="number" class="duration-input" placeholder="esim. 300" oninput="calculateEndTime()" 
-                   style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1.1rem;">
-        </div>
-
         <div class="result-area" style="border-color: var(--primary-color);">
-            <span class="diff-label">Lopetusaika</span>
+            <span class="diff-label">Arvioitu lopetusaika</span>
             <div class="diff-value end-result">--:--</div>
         </div>
-        <p style="font-size: 0.8rem; color: #64748b; text-align: center;">Vain laskentaan, ei tallennu lokiin.</p>
+        <p style="font-size: 0.75rem; color: #64748b; text-align: center; margin: 0;">Vain laskentaan, ei tallennu lokiin.</p>
     </div>
 </div>
 
