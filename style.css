@@ -124,6 +124,37 @@ input[type="time"], input[type="number"] {
     padding: 12px 15px; border-radius: 8px; font-weight: bold;
 }
 
+/* Tiivistys: Alku- ja lopetusaika samalle riville */
+
+.time-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Kaksi tasakokoista saraketta */
+    gap: 10px; /* Väli sarakkeiden välillä */
+    margin-bottom: 10px;
+}
+
+/* Kavennetaan aikakenttää ja nappia, jotta ne mahtuvat puolet kapeampaan tilaan */
+.time-grid .time-row {
+    gap: 4px;
+}
+
+.time-grid input[type="time"] {
+    padding: 8px 4px; /* Hieman tiiviimpi täyte */
+    font-size: 0.95rem;
+    min-width: 0; /* Estää inputia rikkomasta gridiä */
+}
+
+.time-grid .now-btn {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.time-grid .time-section label {
+    font-size: 0.75rem; /* Pienempi otsikko mahtuu paremmin */
+    white-space: nowrap;
+}
+
 /* KORJAUS: Tapahtumarivi mahtuu näytölle */
 .event-input-row {
     display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;
