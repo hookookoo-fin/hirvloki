@@ -293,9 +293,42 @@ input[type="number"]::-webkit-outer-spin-button {
     box-sizing: border-box;
 }
 
+/* Korjattu historia-osio */
 .history-item {
-    background: white; padding: 15px; border-radius: 10px; margin-top: 10px;
-    display: flex; justify-content: space-between; border-left: 5px solid var(--success-color); box-shadow: var(--shadow);
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Napit pysyvät ylhäällä vaikka teksti rivittyy */
+    border-left: 5px solid var(--success-color);
+    box-shadow: var(--shadow);
+    width: 100%;             /* Pakotetaan pysymään leveydessä */
+    box-sizing: border-box;
+    overflow: hidden;        /* Estää sisällön valumisen yli */
+}
+
+.history-item strong {
+    display: block;
+    word-break: break-word;  /* Katkaisee erittäin pitkät sanat/nimet */
+}
+
+.event-row-saved {
+    font-size: 0.85rem;
+    color: #475569;
+    white-space: pre-wrap;   /* TÄRKEÄ: Sallii rivinvaihdot, mutta säilyttää välilyönnit */
+    word-wrap: break-word;   /* Pakottaa tekstin rivittymään laatikon sisällä */
+    overflow-wrap: break-word;
+    margin-top: 4px;
+    padding-left: 5px;       /* Pieni sisennys selkeyden vuoksi */
+}
+
+/* Varmistetaan, että tekstialue vie mahdollisimman paljon tilaa ennen nappeja */
+.history-item > div:first-child {
+    flex: 1;
+    min-width: 0;            /* Pakollinen flex-lapselle, jotta teksti rivittyy oikein */
+    padding-right: 10px;
 }
 
 /* Muutetaan historian toiminnot tiiviimmäksi */
@@ -317,8 +350,6 @@ input[type="number"]::-webkit-outer-spin-button {
     filter: sepia(1); /* Antaa hieman ruskehtavan sävyn */
 }
 
-
-.event-row-saved { font-size: 0.85rem; color: #475569; white-space: pre; }
 
 .danger-link {
     background: none;
